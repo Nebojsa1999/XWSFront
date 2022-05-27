@@ -1,0 +1,19 @@
+
+  
+  .mat-form-field {
+    display: block;
+  }
+  
+  mat-card {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .mat-radio-button ~ .mat-radio-button {  
+    margin-left: 16px;  
+  }  
+
+  strong{
+    color: red;
+    font-size: large;
+  }

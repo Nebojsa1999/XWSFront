@@ -1,0 +1,60 @@
+
+<body>
+      <div class="page" >
+          <h2>Posts:</h2>
+          <div id="left">
+          <h3>Public users:</h3>
+          <mat-table mat-table [dataSource]="data">
+               <ng-container matColumnDef="Content">
+                  <th mat-header-cell *matHeaderCellDef> Post </th>
+                  <td mat-cell *matCellDef="let post"> {{post.content}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Image">
+                  <th mat-header-cell *matHeaderCellDef> Image </th>
+                  <td mat-cell *matCellDef="let post"><img src="{{'data:image/jpg;base64,' + post.image}}" height="50" width="50">  </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="Link">
+                  <th mat-header-cell *matHeaderCellDef> Link </th>
+                  <td mat-cell *matCellDef="let post"><a href="{{post.link}}">{{post.link}}</a>
+                  </td>
+                </ng-container>
+                  <ng-container matColumnDef="Url">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let post">
+                      <a [routerLink]="['/singlePost']"  [queryParams]="{id: post.id}" >View</a>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </mat-table>
+        </div>
+        <div id="center">
+          <h3>Followed users:</h3>
+          <mat-table mat-table [dataSource]="data2">
+            <ng-container matColumnDef="Content">
+               <th mat-header-cell *matHeaderCellDef> Post </th>
+               <td mat-cell *matCellDef="let post"> {{post.content}}</td>
+             </ng-container>
+             <ng-container matColumnDef="Image">
+               <th mat-header-cell *matHeaderCellDef> Image </th>
+               <td mat-cell *matCellDef="let post"><img src="{{'data:image/jpg;base64,' + post.image}}" height="50" width="50">  </td>
+             </ng-container>
+           
+             <ng-container matColumnDef="Link">
+               <th mat-header-cell *matHeaderCellDef> Link </th>
+               <td mat-cell *matCellDef="let post"><a href="{{post.link}}">{{post.link}}</a>
+               </td>
+             </ng-container>
+               <ng-container matColumnDef="Url">
+                 <th mat-header-cell *matHeaderCellDef> </th>
+                 <td mat-cell *matCellDef="let post">
+                   <a [routerLink]="['/singlePost']"  [queryParams]="{id: post.id}" >View</a>
+                 </td>
+             </ng-container>
+             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+       </mat-table>
+      </div>
+      </div>
+</body>
