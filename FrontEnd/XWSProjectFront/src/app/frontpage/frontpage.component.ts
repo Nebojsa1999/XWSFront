@@ -33,7 +33,8 @@ export class FrontpageComponent implements OnInit {
     }
 
   ngOnInit(): void {
-   
+    localStorage.removeItem("Token");
+    localStorage.removeItem('user');
   }
 
   async onSubmit(): Promise<void> {

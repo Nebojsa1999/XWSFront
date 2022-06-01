@@ -45,7 +45,7 @@ export class ApiService {
 
   getPublicUsers()
   {
-    return this.http.get(this.baseURL + "/api/users/user/getPublicUsers", this.getAuthHeader());
+    return this.http.get(this.baseURL + "/api/users/user/getPublicUsers");
   }
 
   getUsersThatIFollow()
@@ -79,11 +79,11 @@ export class ApiService {
   }
   accept(data:any)
   {
-    return this.http.put(this.baseURL + "/api/users/user/acceptFollow/" + data.id, data);
+    return this.http.put(this.baseURL + "/api/users/userFollow/acceptFollow/" + data.userWhoFollowsMe, data,this.getAuthHeader());
   }
   decline(data:any)
   {
-    return this.http.put(this.baseURL + "/api/users/user/declineFollow/" + data.id, data);
+    return this.http.put(this.baseURL + "/api/users/userFollow/declineFollow/" + data.userWhoFollowsMe, data,this.getAuthHeader());
   }
 
   comment(data:any)
@@ -107,6 +107,10 @@ export class ApiService {
   {
     return this.http.get(this.baseURL + "/api/posts/reaction/getReactionsByPost/"+ data.postId,data);
   }
+  getPostByUser(data:any)
+  {
+    return this.http.get(this.baseURL + "/api/posts/post/getPostsByUserId/"+ data.userId,data);  
+  }
   get(data:any)
   {
     return this.http.get(this.baseURL+ "/api/posts/post/" + data.id,data);
@@ -119,5 +123,13 @@ export class ApiService {
   getAllUsers()
   {
     return this.http.get(this.baseURL+ "/api/users/user/getAll");
+  }
+
+  createApi(data:any) {
+    return this.http.post(this.baseURL+ "/api/jobs/apiKey/createApiKey" ,data)
+  }
+
+  getApiKeysFromUserId(data:any) {
+    return this.http.get(this.baseURL+ "/api/jobs/apiKey/getAllApiKeysFromUserId/" +data.userId ,data)
   }
 }

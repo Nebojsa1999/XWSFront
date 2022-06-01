@@ -13,22 +13,50 @@ import {RouterModule} from '@angular/router';
 
 export class UserPageComponent implements OnInit {
   user: any;
-  publicUsers: any;
+  data:any;
+  keys:any;
+  displayedColumns: string[] = ['Content', 'Image', 'Link'];
+  displayedColumnsKeys: string[] = ['ApiKeyString'];
+  constructor(
+    private router: Router,
+    private api: ApiService
 
-  constructor(    private apiService: ApiService,  private router: Router
 
-    ) { }
+   ) 
+   { }
 
   ngOnInit(): void {
     
         const userString = localStorage.getItem('user');
-
-        if(!userString) {
-          return;
+        if(userString == null) {
+          this.router.navigate(['/login'], {queryParams: { login: 'false' } });
         }
       
-        this.user = JSON.parse(userString);
+        this.user = JSON.parse((userString) || '{}');
+        
+        this.api.getPostByUser({
+          userId : this.user.id
+        }).subscribe((response : any) => {
+          this.data = response;
+        })
+
+        this.api.getApiKeysFromUserId({
+          userId: this.user.id
+        }).subscribe((response:any)=>{
+          this.keys = response;
+        })
+
       }
+
+    generateApiKey()
+    {
+      this.api.createApi({
+        userId: this.user.id,
+        ApiKeyString: ''
+      }).subscribe((respone : any)=>{
+
+      })
+    }
 
 
   }

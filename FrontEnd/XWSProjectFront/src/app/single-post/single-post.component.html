@@ -3,14 +3,18 @@
     <mat-card>
       <mat-card-content>
           <h2>Post:</h2>
+            <mat-label>User:</mat-label>
             <mat-label>{{userFunc(post?.userId)?.name}}</mat-label>
+            <br>
+            <br>
             <mat-label>Content:</mat-label>
+            <br>
             <mat-label>{{post?.content}}:</mat-label>
             <img src="{{'data:image/jpg;base64,' + post?.image}}" height="50" width="50"> 
             <a href="{{post?.link}}">{{post?.link}}</a>
             <br>
-            <button (click)="like()">Like</button>
-            <button (click)="dislike()">dislike</button>
+            <button [disabled]="reactionsUserPost?.reactions == 0" (click)="like()">Like</button>
+            <button [disabled]="reactionsUserPost?.reactions == 1" (click)="dislike()">Dislike</button>
             <form [formGroup]="form" (ngSubmit)="onSubmit()" >
                 <h2>Post a comment</h2>
                 <mat-form-field  appearance="fill">
@@ -51,7 +55,13 @@
         </ng-container>
         <ng-container matColumnDef="Reaction">
            <th mat-header-cell *matHeaderCellDef> Reaction </th>
-           <td mat-cell *matCellDef="let reaction"> {{reaction.reactions}}</td>
+           <td mat-cell *matCellDef="let reaction">
+
+            <p *ngIf="reaction.reactions == 0  ; else dislike"> Like</p>
+            <ng-template #dislike>
+              <p>Dislike</p>
+           </ng-template>
+           </td>
          </ng-container>
          
          <tr mat-header-row *matHeaderRowDef="displayedColumnsReactions"></tr>

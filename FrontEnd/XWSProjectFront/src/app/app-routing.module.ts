@@ -5,6 +5,7 @@ import { FollowPageComponent } from './follow-page/follow-page.component';
 import { FollowRequestsComponent } from './follow-requests/follow-requests.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { LoginComponent } from './login/login.component';
+import { PublicPostsComponent } from './public-posts/public-posts.component';
 import { RegisterComponent } from './register/register.component';
 import { SinglePostComponent } from './single-post/single-post.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
@@ -27,7 +28,7 @@ const routes: Routes = [
   },
   {
     path:'userprofile',
-    component: UserPageComponent
+    component: UserPageComponent 
   },
   {
     path:'viewPosts',
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path:'followRequests',
     component: FollowRequestsComponent
+  },
+  {
+    path:'publicPosts',
+    component: PublicPostsComponent
   },
 
 

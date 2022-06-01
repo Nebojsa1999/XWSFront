@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   public loginInvalid = false;
   private formSubmitAttempt = false;
   public errorMessage : any; 
-
+  infoMessage:string;
 
   constructor(
     private fb: FormBuilder,
@@ -30,7 +30,13 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-
+    this.infoMessage = '';
+    this.route.queryParams
+    .subscribe(params => {
+      if(params['login'] !== undefined && params['login'] === 'false') {
+          this.infoMessage = 'Please Login!';
+      }
+    });
   }
 
   async onSubmit(): Promise<void> {
@@ -58,7 +64,8 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/userprofile']);
 
           });
-        });
+        },(error:any) => {
+          this.errorMessage = error.error});
 
       } catch (err) {
         this.loginInvalid = true;

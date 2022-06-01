@@ -10,20 +10,19 @@ import { ApiService } from '../api.service';
 export class FollowRequestsComponent implements OnInit {
   data: any;
   displayedColumns: string[] = ['Name', 'Surname', 'Button'];
+  user:any;
   constructor(private apiService: ApiService , 
     private router: Router) { }
 
   ngOnInit(): void {
     const userString = localStorage.getItem('user');
-
-    if(!userString) {
-      return;
+    if(userString == null) {
+      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
     }
   
-    const user = JSON.parse(userString);
+    this.user = JSON.parse((userString) || '{}');
     this.apiService.getUsersThatSendRequest().subscribe((response : any) => {
       this.data = response;
-      
         
     });
   }
@@ -31,20 +30,19 @@ export class FollowRequestsComponent implements OnInit {
   accept  (id:any) 
   {
       this.apiService.accept({
-        userFollowId: id,
+        userWhoFollowsMe: id,
       }).subscribe((response : any) => {
-          this.router.navigate(['/userprofile']);
-       
+       this.ngOnInit()
       });
   }
 
   decline  (id:any) 
   {
       this.apiService.decline({
-        userFollowId: id,
+        userWhoFollowsMe: id,
       }).subscribe((response : any) => {
-          this.router.navigate(['/userprofile']);
-       
+        this.ngOnInit()
+
       });
   }
 

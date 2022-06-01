@@ -1,6 +1,5 @@
 <body>
     <div class="page">
-    
         <div class="navbar">
             <a href="/updateProfile">Update your profile</a>
             <div class="dropdown">
@@ -31,10 +30,49 @@
                   <a href="#">Inbox</a>
                 </div>
             </div> 
+            <a href="/home">Log out</a>
           </div>
-        
-      
+          <div  id="left">
           <h1>Welcome {{user.name}} {{user.surname}} !</h1>
-    
+          <h2>Your Posts:</h2>
+          <mat-table mat-table [dataSource]="data">     
+              <ng-container matColumnDef="Content">
+                  <th mat-header-cell *matHeaderCellDef> Post </th>
+                  <td mat-cell *matCellDef="let post"> {{post.content}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Image">
+                  <th mat-header-cell *matHeaderCellDef> Image </th>
+                  <td mat-cell *matCellDef="let post"><img src="{{'data:image/jpg;base64,' + post.image}}" height="50" width="50">  </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="Link">
+                  <th mat-header-cell *matHeaderCellDef> Link </th>
+                  <td mat-cell *matCellDef="let post"><a href="{{post.link}}">{{post.link}}</a>
+                  </td>
+                </ng-container>
+                  <ng-container matColumnDef="Url">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let post">
+                      <a [routerLink]="['/singlePost']"  [queryParams]="{id: post.id}" >View</a>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </mat-table>
+        </div>
+        <div id="center">
+        <button mat-raised-button color="primary" (click)="generateApiKey()"> Generate Api</button>
+               <mat-table mat-table [dataSource]="keys">     
+              
+                <ng-container matColumnDef="ApiKeyString">
+                  <th mat-header-cell *matHeaderCellDef> ApiKeyString </th>
+                  <td mat-cell *matCellDef="let apikey">{{apikey.apiKeyString}}
+                  </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsKeys"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsKeys;"></tr>
+          </mat-table>
+        </div>
      </div>
 </body>

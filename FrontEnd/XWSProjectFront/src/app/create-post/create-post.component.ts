@@ -11,6 +11,7 @@ import { ApiService } from '../api.service';
 })
 export class CreatePostComponent implements OnInit {
   base64Output : string;
+  user:any;
   onFileSelected(event:any) {
     this.convertFile(event.target.files[0]).subscribe(base64 => {
       this.base64Output = base64;
@@ -46,19 +47,17 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit(): void {
- 
+    const userString = localStorage.getItem('user');
+    if(userString == null) {
+      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
+    }
+  
+    this.user = JSON.parse((userString) || '{}');
   
   }
 
   async onSubmit(): Promise<void> {
-    const userString = localStorage.getItem('user');
-
-    if(!userString) {
-      return;
-    }
-  
-    const user = JSON.parse(userString);
-    console.log(user)
+   
     this.formSubmitAttempt = false;
     if (this.form.valid) {
       
@@ -68,7 +67,7 @@ export class CreatePostComponent implements OnInit {
         this.apiService.createPost({
           content: post,
           link: link,
-          userId : user.id,
+          userId : this.user.id,
           image : this.base64Output
         }).subscribe((response : any) => {
          

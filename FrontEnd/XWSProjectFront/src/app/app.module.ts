@@ -36,6 +36,7 @@ import { FollowRequestsComponent } from './follow-requests/follow-requests.compo
 import { SendMessageComponent } from './send-message/send-message.component';
 import { SinglePostComponent } from './single-post/single-post.component';
 import { UsersIFollowComponent } from './users-ifollow/users-ifollow.component';
+import { PublicPostsComponent } from './public-posts/public-posts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,8 +51,8 @@ import { UsersIFollowComponent } from './users-ifollow/users-ifollow.component';
     FollowRequestsComponent,
     SendMessageComponent,
     SinglePostComponent,
-    UsersIFollowComponent
-  ],
+    UsersIFollowComponent,
+    PublicPostsComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

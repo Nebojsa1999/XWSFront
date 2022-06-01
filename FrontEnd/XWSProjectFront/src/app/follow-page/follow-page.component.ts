@@ -9,6 +9,7 @@ import { ApiService } from '../api.service';
 })
 export class FollowPageComponent implements OnInit {
   data: any;
+  user:any;
   displayedColumns: string[] = ['Name', 'Surname', 'Button'];
   
   constructor(  private apiService: ApiService , 
@@ -19,12 +20,11 @@ export class FollowPageComponent implements OnInit {
   ngOnInit(): void {
 
     const userString = localStorage.getItem('user');
-
-    if(!userString) {
-      return;
+    if(userString == null) {
+      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
     }
   
-    const user = JSON.parse(userString);
+    this.user = JSON.parse((userString) || '{}');
     this.apiService.getUsersThatIDontFollow().subscribe((response : any) => {
       this.data = response;
 

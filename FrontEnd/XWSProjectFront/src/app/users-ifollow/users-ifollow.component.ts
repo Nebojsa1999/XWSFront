@@ -10,17 +10,18 @@ import { ApiService } from '../api.service';
 export class UsersIFollowComponent implements OnInit {
   data: any;
   displayedColumns: string[] = ['Name', 'Surname'];
+  user:any
   constructor(private apiService: ApiService , 
     private router: Router){}
 
   ngOnInit(): void {
     const userString = localStorage.getItem('user');
-
-    if(!userString) {
-      return;
+    if(userString == null) {
+      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
     }
   
-    const user = JSON.parse(userString);
+    this.user = JSON.parse((userString) || '{}');
+
     this.apiService.getUsersThatIFollow().subscribe((response : any) => {
       this.data = response;
       

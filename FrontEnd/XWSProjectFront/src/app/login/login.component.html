@@ -1,3 +1,7 @@
+<span class="strong" *ngIf="infoMessage.length > 0">{{ infoMessage }}</span>
+<span class="strong" *ngIf="errorMessage" >
+  {{errorMessage | json}}
+</span>
 <div class="page">
     <mat-card>
       <mat-card-content>

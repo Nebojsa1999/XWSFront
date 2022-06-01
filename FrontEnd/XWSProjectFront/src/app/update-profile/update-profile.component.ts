@@ -15,8 +15,7 @@ export class UpdateProfileComponent implements OnInit {
   public errorMessage : any;
    
   users: any;
-  genders: any = [0,1];
-  gendersString: string[] = ['Male','Female'];
+  user:any;
   exampleArr: Array<{ id: number, gend: string}> = [
     { id: 0, gend: 'Male'},
     { id: 1, gend: 'Female'}
@@ -48,12 +47,20 @@ export class UpdateProfileComponent implements OnInit {
       interest: [''],
       privacy: ['']
     });
+
+    const userString = localStorage.getItem('user');
+    if(userString == null) {
+      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
+    }
+  
+    this.user = JSON.parse((userString) || '{}');
  
   }
 
   
 
   async ngOnInit():  Promise<void>  {
+    
     this.users = []    
     this.api.getCurrentUser().subscribe((response : any) => {
       this.users = response;
@@ -72,8 +79,7 @@ export class UpdateProfileComponent implements OnInit {
         interest: this.users.interest,
         privacy: this.users.privacy,
         
-     });
-  
+     });  
     })
   }
 
@@ -110,10 +116,8 @@ export class UpdateProfileComponent implements OnInit {
           privacy: privacy
           
         }).subscribe((response : any) => {
+          this.ngOnInit()
 
-          this.router.navigate(['/userprofile'])
-        },(error:any) => {
-          this.errorMessage = error.error;
         });
 
 
@@ -125,5 +129,7 @@ export class UpdateProfileComponent implements OnInit {
       this.formSubmitAttempt = true;
     }
   }
+
+
 
 }

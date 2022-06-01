@@ -13,11 +13,15 @@ user : any
 postIdString: any
 postId:any
 post:any
-reactions:any
+reactionsUserPost:any
 form: FormGroup;
 dataComments: any[] = [];
 dataReactions: any[] = [];
 users: any[] = [];
+reactionArray: Array<{ id: number, reaction: string}> = [
+  { id: 0, reaction: 'Like'},
+  { id: 1, reaction: 'Dislike'}
+];
 displayedColumnsComments: string[] = ['Name', 'Content'];
 displayedColumnsReactions: string[] = ['Name','Reaction']
 private formSubmitAttempt = false;
@@ -40,11 +44,11 @@ private formSubmitAttempt = false;
     this.postIdString = this.route.snapshot.queryParamMap.get('id');
     this.postId = parseInt(this.postIdString);
     const userString = localStorage.getItem('user');
-    if(!userString) {
-      return;
+    if(userString == null) {
+      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
     }
   
-    this.user = JSON.parse(userString);
+    this.user = JSON.parse((userString) || '{}');
  
         this.load()
         this.api.getAllUsers(
@@ -63,8 +67,7 @@ load()
       userId: this.user.id,
       postId: this.postId
     }).subscribe((response:any)=>{
-     this.reactions = response
-     
+     this.reactionsUserPost = response
     })
   this.api.get({
     id: this.postId

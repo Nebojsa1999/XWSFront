@@ -15,17 +15,18 @@ export class ViewPostsComponent implements OnInit {
   listUsersFollowed: Array<Number> = [];
   data: any;
   data2: any;
-  postId: any
-  displayedColumns: string[] = ['Content', 'Image', 'Link','Url'];
+  users: any[] = [];
+  displayedColumns: string[] = ['Name','Content', 'Image', 'Link','Url'];
   
-  constructor(private apiService: ApiService,private router: Router) {
+  constructor(private apiService: ApiService,
+    private router: Router) {
     const userString = localStorage.getItem('user');
-
-    if(!userString) {
-      return;
-    }
-  
-    this.user = JSON.parse(userString);
+        if(userString == null) {
+          this.router.navigate(['/login'], {queryParams: { login: 'false' } });
+        }
+      
+        this.user = JSON.parse((userString) || '{}');
+    
 
    }
 
@@ -59,41 +60,25 @@ export class ViewPostsComponent implements OnInit {
       })
     })
 
+    this.apiService.getAllUsers(
+          
+      ).subscribe((respone:any)=>
+      {
+        this.users = respone;
+      })
+
     
 }
+userFunc(userId:any) : any 
+{
+  for(let user of this.users)
+  {
+    if(user.id == userId)
+    {
+      return user;
+    }
+  }
 
-comment  (id:any) 
-{
-  
-    this.apiService.comment({
-      PostId: id,
-      UserId: this.user.id,
-    }).subscribe((response : any) => {
-        this.router.navigate(['/userprofile']);
-     
-    });
-}
-
-like  (id:any) 
-{
-    this.apiService.react({
-      PostId: id,
-      UserId: this.user.id,
-      Reactions: 0
-    }).subscribe((response : any) => {
-        this.router.navigate(['/userprofile']);
-     
-    });
-}
-dislike(id:any)
-{
-  this.apiService.react({
-    PostId: id,
-    UserId: this.user.id,
-    Reactions: 1
-  }).subscribe((response : any) => {
-      this.router.navigate(['/userprofile']);
-   
-  });
+  return null;
 }
 }

@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
           dateOfBirth : dateBirth
         }).subscribe((response : any) => {
 
-          this.router.navigate(['/'])
+          this.router.navigate(['/login'])
         },(error:any) => {
           this.errorMessage = error.error;
         });
