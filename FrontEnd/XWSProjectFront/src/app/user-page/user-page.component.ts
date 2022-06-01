@@ -16,7 +16,6 @@ export class UserPageComponent implements OnInit {
   data:any;
   keys:any;
   displayedColumns: string[] = ['Content', 'Image', 'Link'];
-  displayedColumnsKeys: string[] = ['ApiKeyString'];
   constructor(
     private router: Router,
     private api: ApiService
@@ -44,6 +43,7 @@ export class UserPageComponent implements OnInit {
           userId: this.user.id
         }).subscribe((response:any)=>{
           this.keys = response;
+          console.log(this.keys.apiKeyString)
         })
 
       }
@@ -54,7 +54,7 @@ export class UserPageComponent implements OnInit {
         userId: this.user.id,
         ApiKeyString: ''
       }).subscribe((respone : any)=>{
-
+        this.ngOnInit()
       })
     }
 
