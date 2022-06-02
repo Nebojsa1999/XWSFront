@@ -6,8 +6,9 @@
       <ul>
           <li >
                   <div class="pic">
-                      <img src="/assets/images/logo.png" width="150" height="150"> 
-
+                    <a href="">
+                      <img src="/assets/images/logo.png" style="width:200px;height:127px;"> 
+                    </a>
                   </div>
 
           </li>
@@ -18,7 +19,7 @@
   
                <form [formGroup]="form" (ngSubmit)="onSubmit()" style="margin:auto;max-width:300px">
                 <input type="text" formControlName="Name" placeholder="Search.." name="search2">
-                <button (click)="DropdownVar=2" type="submit"><i class="fa fa-search"></i></button>
+                <button (click)="onSelect(2)" type="submit"><i class="fa fa-search"></i></button>
               </form>
           </div>
 

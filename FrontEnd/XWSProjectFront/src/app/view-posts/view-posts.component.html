@@ -1,5 +1,46 @@
 
-<body>
+  <div class="navbar">
+    <a href="/userprofile">Home</a>
+    <a href="/updateProfile">Update your profile</a>
+    <div class="dropdown">
+      <button class="dropbtn">Posts 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="/createPost">Create</a>
+        <a href="/viewPosts" >View posts</a>
+      </div>
+    </div> 
+    <div class="dropdown">
+        <button class="dropbtn">Follows 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="/followPage" >Follows someone</a>
+          <a href="/followRequests">View requests</a>
+          <a href="/usersIFollow">View all followers</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Messages 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="/sendMessage">Send a message</a>
+          <a href="#">Inbox</a>
+        </div>  
+    </div> 
+    <div class="dropdown">
+      <button class="dropbtn">Jobs 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="/jobOffers">Job offers</a>
+        <a href="/searchJob">Search for job</a>
+      </div>
+  </div> 
+    <a href="/home">Log out</a>
+  </div>
       <div class="page" >
           <h2>Posts:</h2>
           <div id="left">
@@ -65,4 +106,3 @@
        </mat-table>
       </div>
       </div>
-</body>

@@ -2,3 +2,36 @@ td {
     border: 1px solid rgb(215, 215, 215);
     border-collapse: collapse;
   }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+       
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 22px 20px;
+    text-decoration: wavy;
+    font-size: xx-large;
+    height: 70px;
+    line-height: 90px;
+  }
+  
+  div.login:hover {
+    background-color: rgb(247, 243, 243);
+        height: 100px;
+  }
+  
+  .page {
+    height: calc(100vh - 100px);
+   
+  }

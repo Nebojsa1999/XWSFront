@@ -4,9 +4,11 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { FollowPageComponent } from './follow-page/follow-page.component';
 import { FollowRequestsComponent } from './follow-requests/follow-requests.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
+import { JobOffersComponent } from './job-offers/job-offers.component';
 import { LoginComponent } from './login/login.component';
 import { PublicPostsComponent } from './public-posts/public-posts.component';
 import { RegisterComponent } from './register/register.component';
+import { SearchJobComponent } from './search-job/search-job.component';
 import { SinglePostComponent } from './single-post/single-post.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { UserPageComponent } from './user-page/user-page.component';
@@ -58,7 +60,14 @@ const routes: Routes = [
     path:'publicPosts',
     component: PublicPostsComponent
   },
-
+  {
+    path:'jobOffers',
+    component: JobOffersComponent
+  },
+  {
+    path:'searchJob',
+    component: SearchJobComponent
+  },
 
   { path: '', component: FrontpageComponent },
   { path: '**', component: FrontpageComponent }

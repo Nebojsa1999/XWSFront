@@ -132,4 +132,11 @@ export class ApiService {
   getApiKeysFromUserId(data:any) {
     return this.http.get(this.baseURL+ "/api/jobs/apiKey/getAllApiKeysFromUserId/" +data.userId ,data)
   }
+
+  getAllJobs(){
+    return this.http.get(this.baseURL + "/api/jobs/job/getAllJobs");
+  }
+  searchJob(data:any){
+    return this.http.post(this.baseURL + "/api/jobs/job/searchjob",data);
+  }
 }

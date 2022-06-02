@@ -1,9 +1,45 @@
-.page {
-    height: calc(100vh - 100px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.search input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
   }
+  
+  
+  .search button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  .search button:hover {
+    background: #0b7dda;
+  }
+  
+  td {
+    border: 1px solid rgb(215, 215, 215);
+    border-collapse: collapse;
+  }
+ 
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  .search{
+      margin-top: 30px;
+      margin-right: 1110px;
+  }
+
   .navbar {
     overflow: hidden;
     background-color: cornflowerblue;
@@ -64,3 +100,5 @@
   .dropdown:hover .dropdown-content {
     display: block;
   }
+
+  

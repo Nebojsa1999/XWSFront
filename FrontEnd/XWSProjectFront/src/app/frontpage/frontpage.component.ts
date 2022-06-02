@@ -45,7 +45,6 @@ export class FrontpageComponent implements OnInit {
         }).subscribe((response : any) => {
           this.data = response;
 
-
           
         });
 

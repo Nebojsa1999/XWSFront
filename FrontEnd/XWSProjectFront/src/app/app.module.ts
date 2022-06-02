@@ -37,6 +37,8 @@ import { SendMessageComponent } from './send-message/send-message.component';
 import { SinglePostComponent } from './single-post/single-post.component';
 import { UsersIFollowComponent } from './users-ifollow/users-ifollow.component';
 import { PublicPostsComponent } from './public-posts/public-posts.component';
+import { JobOffersComponent } from './job-offers/job-offers.component';
+import { SearchJobComponent } from './search-job/search-job.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +54,9 @@ import { PublicPostsComponent } from './public-posts/public-posts.component';
     SendMessageComponent,
     SinglePostComponent,
     UsersIFollowComponent,
-    PublicPostsComponent  ],
+    PublicPostsComponent,
+    JobOffersComponent,
+    SearchJobComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
