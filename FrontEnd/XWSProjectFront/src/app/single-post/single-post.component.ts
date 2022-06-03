@@ -57,6 +57,14 @@ private formSubmitAttempt = false;
         {
           this.users = respone;
         })
+
+        this.api.getUser(
+          {
+            id:this.user.id
+          }
+        ).subscribe((response : any) => {
+         console.log(response)
+        });
       
       }
 
@@ -170,6 +178,8 @@ userFunc(userId:any) : any
      else {
       this.formSubmitAttempt = true;
     }
+
+    
   }
 
 }

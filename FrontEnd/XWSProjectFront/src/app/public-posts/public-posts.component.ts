@@ -37,6 +37,8 @@ export class PublicPostsComponent implements OnInit {
       {
         this.users = respone;
       })
+
+    
   }
 
   userFunc(userId:any) : any 
